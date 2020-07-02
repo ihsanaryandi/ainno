@@ -1,6 +1,8 @@
 function findAll(selector, event = null, callback) {
 	const elements = document.querySelectorAll(selector)
 
+	if(!elements) return
+
 	if(event == null) {
 		return elements
 	}
@@ -15,6 +17,8 @@ function findAll(selector, event = null, callback) {
 function find(selector, event = null, callback) {
 	const el = document.querySelector(selector)
 
+	if(!el) return
+
 	if(event == null) {
 		return el
 	}
@@ -27,6 +31,8 @@ function find(selector, event = null, callback) {
 function autoComplete(elements) { 
 	for(let elementId in elements) {
 		const trigger = find(`[data-autocomplete="#${elementId}"]`);
+
+		if(!trigger) return
 
 		trigger.addEventListener('keyup', () => {
 			const autoCompleteElement = find(trigger.dataset.autocomplete)
@@ -53,3 +59,9 @@ autoComplete({
 		console.log('OK')
 	}
 })
+
+findAll('button#seeAnswer', 'click', ({ el }) => {
+	el.classList.add('show')
+	el.nextElementSibling.classList.add('show')
+})
+

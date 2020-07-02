@@ -46,3 +46,36 @@
 	color: red;
 }
 
+.card .card-body .professional-profile,
+.card .card-body .profile {
+	display: flex;
+	align-items: center;
+}
+.card .card-body .professional-profile img,
+.card .card-body .profile img {
+	width: 35px;
+	height: 35px;
+	border-radius: 50%;
+	object-fit: cover;
+}
+
+.card .card-body .question {
+	max-height: 200px;
+	overflow-y: auto;
+}
+
+.card .card-body .see-answer {
+	cursor: pointer;
+}
+
+.card .card-body .see-answer.show {
+	display: none;
+}
+
+.card .card-body .answer-section {
+	display: none;
+}
+
+.card .card-body .answer-section.show {
+	display: block;
+}
