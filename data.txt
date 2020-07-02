@@ -1,0 +1,29 @@
+1. Founder & Co-Founder
+	- ID
+	- Nama
+	- Email
+	- Password
+	- Keahlian
+	- Kota
+	- Alamat Tinggal
+	- Foto Profil
+	- Deskripsi
+	- No. Telp
+
+2. Adviser (Penasihat)
+	- ID
+	- Nama
+	- Email
+	- Password
+	- Keahlian
+	- Kota
+	- Alamat Tinggal
+	- Foto Profil
+	- Gelar/Jabatan
+
+3. Grup Bisnis
+	- [Founder]
+	- [Co-Founder]
+	- Judul
+	- Deskripsi
+	- Batas Co-Founder

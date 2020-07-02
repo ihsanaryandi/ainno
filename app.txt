@@ -1,0 +1,18 @@
+Innno
+
+1. Goal
+	Membantu orang membentuk tim untuk menjalankan bisnisnya
+
+2. Features
+	- Team/Co-Founder Finder
+	- Startup Assistance (Consultation)
+	- Cloud Presentation (Online Presentation)
+	- Skill Assessment (NOT SURE)
+
+3. Core Feature
+	Team Finder
+	
+4. Audience Target
+	Orang yang ingin memulai bisnis besar
+
+// A decentralized skill-assessment and freelancing app that will let people assess their particular skills through a series of automated tests or problems. Based on the skill assessment, the app will also connect job-seekers with employers for freelance work around the world.

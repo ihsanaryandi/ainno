@@ -1,0 +1,7 @@
+1. Founder(One) [MENCARI/TERHUBUNG] Co-Founder(Many)
+
+2. Founder(One) [KONSULTASI] Adviser(One)
+
+3. Founder(One) [BUAT] GrupBisnis(Many)
+
+4. Founder(One) [CHAT] Co-Founder(Many) 
