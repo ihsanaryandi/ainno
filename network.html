@@ -28,7 +28,7 @@
             </div>
             <div class="navbar-nav mr-4">
                <a class="btn btn-primary mr-2" href="login.html">Login <span class="sr-only">(current)</span></a>
-               <a class="btn btn-success" href="register.html">Daftar</a>
+               <a class="btn btn-success" href="#" data-toggle="modal" data-target="#chooseRoleModal">Daftar</a>
             </div>
             <div class="navbar-nav">
                <a href="profile.html">
@@ -50,10 +50,10 @@
                         <input class="form-control" type="text" name="skill" id="skill" placeholder="Keahlian..." data-autocomplete="#skillResults">
                         <div class="autocomplete" id="skillResults">
                            <div class="result" data-value="Web Development">Web Development</div>
-                           <div class="result" data-value="Marketing">Marketing</div>
+                           
                         </div>
                      </div>
-                     <div id="skillResults">
+                     <div id="skillsSelected">
                         <span class="badge badge-pill badge-light" id="selectedSkill">
                            <span class="remove">&times;</span>
                            Web Development
@@ -91,7 +91,7 @@
             <div class="col-md-8">
                <div class="form-group">
                   <label for="coFounder">Cari Co-Founder</label>
-                  <input class="form-control" type="text" name="coFounder" id="coFounder" placeholder="Nama atau Username">
+                  <input class="form-control" type="text" name="coFounder" id="coFounder" placeholder="Username...">
                </div>
                <div class="mt-5" id="coFounderResults">
                   <div class="card mb-3" style="max-width: 540px;">
@@ -147,6 +147,35 @@
          </div>
       </div>
    </main>
+
+   <!-- Modal -->
+   <div class="modal fade" id="chooseRoleModal" tabindex="-1" role="dialog" aria-labelledby="chooseRoleModal" aria-hidden="true">
+     <div class="modal-dialog">
+       <div class="modal-content">
+         <div class="modal-header">
+           <h5 class="modal-title" id="exampleModalLabel">Apa yang kamu inginkan ?</h5>
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+           </button>
+         </div>
+         <div class="modal-body">
+            <div class="list-group">
+               <a href="register.html?r=co_founder" class="list-group-item list-group-item-action list-group-item-light">
+                  <strong>Mencari Co-Founder</h6><br>
+                  <small class="text-muted">Cari Co-Founder yang kamu inginkan dengan berbagai macam keahlian.</small>
+               </a>
+               <a href="register.html?r=adviser" class="list-group-item list-group-item-action list-group-item-light">
+                  <strong>Adviser (Penasihat)</h6><br>
+                  <small class="text-muted">Membantu memberikan saran/nasihat kepada para pebisnis pemula.</small>
+               </a>
+            </div>
+         </div>
+         <div class="modal-footer">
+           <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+         </div>
+       </div>
+     </div>
+   </div>
 
 
    <!-- Optional JavaScript -->

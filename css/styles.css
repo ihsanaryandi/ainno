@@ -26,11 +26,13 @@ nav.navbar .navbar-nav img.profile-picture {
 	display: block;
 }
 
+.form-group .autocomplete .no-results,
 .form-group .autocomplete .result {
 	padding: .5rem .9rem;
 	font-size: .9rem;
 }
 
+.form-group .autocomplete .result.hg,
 .form-group .autocomplete .result:hover {
 	background-color: rgba(0, 0, 0, 0.1);
 	cursor: pointer;
