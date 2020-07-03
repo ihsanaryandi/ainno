@@ -1,3 +1,10 @@
+nav.navbar .navbar-nav img.profile-picture {
+	width: 35px;
+	height: 35px;
+	border-radius: 50%;
+	object-fit: cover;
+}
+
 .form-group {
 	position: relative;
 }
