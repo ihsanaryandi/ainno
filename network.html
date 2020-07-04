@@ -47,7 +47,8 @@
                   <div class="card-body">
                      <div class="form-group">
                         <label for="skill">Keahlian</label>
-                        <input class="form-control" type="text" name="skill" id="skill" placeholder="Keahlian..." data-autocomplete="#skillResults" data-results-show="#skillsSelected">
+                        <input class="form-control" type="text" name="skill" id="skill" autocomplete="off" placeholder="Keahlian..." data-autocomplete="#skillResults" data-results-show="#skillsSelected" data-results-input="#skillsSelectedInput">
+                        <input type="hidden" name="skills-selected">
                         <div class="autocomplete" id="skillResults">
                            <div class="result" data-value="Web Development">Web Development</div>
                         </div>
@@ -68,21 +69,31 @@
                   <div class="card-body">
                      <div class="form-group">
                         <label for="city">Kota</label>
-                        <input class="form-control" type="text" name="city" id="city" autocomplete="off" data-autocomplete="#cityResults" placeholder="Kota...">
+                        <input class="form-control" 
+                               type="text" 
+                               name="city" 
+                               id="cityAutocompleteInput" 
+                               autocomplete="off"
+                               placeholder="Kota..."
+                               data-results-input="#selectedCitiesInput"
+                               data-results-show="#selectedCities"
+                               data-autocomplete="#cityResults"
+                        >
+                        <input type="hidden" name="cities-selected" id="selectedCitiesInput">
                         <div class="autocomplete" id="cityResults">
                            <div class="result" data-value="Bandung">Bandung</div>
-                           <div class="result" data-value="Bandung">Jakarta</div>
+                           <div class="result" data-value="Jakarta">Jakarta</div>
                         </div>
                      </div>
                      <div id="selectedCities">
-                        <span class="badge badge-pill badge-light" id="selectedCity">
+                        <!-- <span class="badge badge-pill badge-light" id="selectedCity">
                            <span class="remove">&times;</span>
                            Bandung
                         </span>
                         <span class="badge badge-pill badge-light" id="selectedCity">
                            <span class="remove">&times;</span>
                            Jakarta
-                        </span>
+                        </span> -->
                      </div>
                   </div>
                </div>

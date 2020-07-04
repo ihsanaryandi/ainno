@@ -2,19 +2,65 @@ import { find, findAll } from './utils.js'
 import autoComplete from './autoComplete.js'
 
 // Auto Complete
-autoComplete({
-	skillResults: ({ trigger, selected }) => {
-		
+let results = []
+
+autoComplete('#cityAutocompleteInput', {
+	onRemoveResult: (element, results) => {
+		results.splice(
+			results.findIndex(result => result === element.nextElementSibling.innerText),
+			1
+		)
+		return results
 	},
 
-	cityResults: () => {
-		
+	onRenderResults: (resultsShowElement, results) => {
+		resultsShowElement.innerHTML = ''
+
+		results.forEach(result => {
+			resultsShowElement.innerHTML += 
+				`<span class="badge badge-pill badge-light" id="selectedCity">
+                   <span class="remove" data-remove-result>&times;</span>
+                   <span>${result}</span>
+                 </span>`
+		})
 	}
 })
 
-function renderResults(results) {
+// autoComplete('#cityAutocompleteInput', (value) => {
+// 	results.push(value)
 
-}
+// 	updateInput(inputElement, results)
+// 	renderResults(selectedCitiesElement, results)
+// })
+
+// selectedCitiesElement.addEventListener('click', e => {
+// 	if(e.target.hasAttribute('data-remove-result')) {
+// 		results.splice(
+// 			results.findIndex(result => result === e.target.nextElementSibling.innerText),
+// 			1
+// 		)
+// 		console.log(results)
+
+// 		updateInput(inputElement, results)
+// 		renderResults(selectedCitiesElement, results)
+// 	}
+// })
+
+// function updateInput(inputElement, results) {
+// 	inputElement.value = results.join(',')
+// }
+
+// function renderResults(parentElement, results) {
+// 	parentElement.innerHTML = ''
+
+// 	results.forEach(result => {
+// 		parentElement.innerHTML += 
+// 			`<span class="badge badge-pill badge-light">
+//                <span class="remove" data-remove-result>&times;</span>
+//                <span>${result}</span>
+//              </span>`
+// 	})
+// }
 
 // Answer Button
 findAll('button#seeAnswer', 'click', ({ el }) => {
