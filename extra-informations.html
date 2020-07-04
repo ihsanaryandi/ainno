@@ -20,6 +20,7 @@
 				<div class="col-md-6">
 					<div class="card">
 						<form class="card-body" method="POST" action="" enctype="multipart/form-data">
+							<h5 class="mb-3 text-center">Profil</h5>
 							<h6 class="mb-3">Foto Profil</h6>
 							<div class="custom-file mb-3">
 								<input type="file" class="custom-file-input" id="profilePicture">
@@ -38,13 +39,21 @@
 
 								<div class="autocomplete" id="skillResults">
 		                           <div class="result" data-value="Web Development">Web Development</div>
-		                           <div class="result" data-value="Marketing">Marketing</div>  
+		                           <div class="result" data-value="Marketing">Marketing</div>
 		                           
 		                           <!-- If There are no results -->
 		                           <!-- <div class="no-results"><strong>Tidak ada hasil</strong></div> -->
 		                        </div>
 							</div>
+
 	                        <div class="mb-3" id="skillsSelected"></div>
+							
+							<h6 class="mb-3">Kontak</h6>
+							<div class="form-group">
+								<label for="phone">No. Telp</label>
+								<input class="form-control" type="text" id="phone" name="phone" placeholder="08xxxxxxxxx">
+							</div>
+
 							<h6 class="mb-3">Tempat Tinggal</h6>
 							<div class="form-group">
 								<label for="city">Kota</label>
@@ -54,7 +63,7 @@
 								<label for="alamat">Alamat</label>
 								<textarea class="form-control" id="address" name="address" placeholder="Alamat..." rows="2"></textarea>
 							</div>
-							<button class="btn btn-primary d-block w-100" type="submit">Login</button>
+							<button class="btn btn-primary d-block w-100" type="submit">Lanjut</button>
 						</form>
 					</div>
 				</div>
@@ -67,6 +76,14 @@
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+	<script type="text/javascript">
+		
+		$('.custom-file .custom-file-input').on('change', e => {
+			e.target.nextElementSibling.innerText = e.target.files[0].name
+		})
+
+	</script>
 
 	<!-- Custom Scripts -->
 	<script type="module" src="js/script.js"></script>

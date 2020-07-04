@@ -58,19 +58,20 @@ export default function autoComplete(elements) {
 }
 
 function renderResults(resultsInput, resultsShow, results) {
-	// Resets
-	resultsInput.value = ''
-	resultsShow.innerHTML = ''
+	if(resultsInput) {
+		resultsInput.value = ''
+		resultsInput.value = results.join(',')
+	}
 
-	resultsInput.value = results.join(',')
-	results.map(result => {
-		resultsShow.innerHTML += 
-			`<span class="badge badge-pill badge-light">
-                <span class="remove" data-remove-result>&times;</span>
-                <span>${result}</span>
-             </span>
-            `
-	})
+	if(resultsShow) {
+		resultsShow.innerHTML = ''
+		results.map(result => {
+			resultsShow.innerHTML += 
+				`<span class="badge badge-pill badge-light">
+	                <span class="remove" data-remove-result>&times;</span>
+	                <span>${result}</span>
+	             </span>
+	            `
+		})
+	}
 }
-
-

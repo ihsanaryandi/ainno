@@ -5,6 +5,10 @@ import autoComplete from './autoComplete.js'
 autoComplete({
 	skillResults: ({ trigger, selected }) => {
 		
+	},
+
+	cityResults: () => {
+		
 	}
 })
 
