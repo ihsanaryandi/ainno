@@ -42,17 +42,39 @@
 
 	<main>
 		<div class="container my-5">
-			<div class="row">
-				<div class="col-md-3">
-					<img class="profile-picture" src="img/co-founder.jpg">
+			<div class="row justify-content-center">
+				<div class="col-md-8 mb-4 text-center profile">
+					<div class="card">
+						<div class="card-body">
+							<div class="profile-picture">
+								<img src="img/co-founder.jpg">
+							</div>
+							<div class="username mb-2">shuzolotova <strong class="name">(Sasha Zotova)</strong></div>
+							<p><strong class="city">Bandung, Indonesia</strong></p>
+							<p class="bio">Founder of Google</p>
+							<a href="edit-profile.html" class="btn btn-secondary w-50 m-auto">Edit Profil</a>
+						</div>
+					</div>
 				</div>
-				<div class="col-md-8">
-					<div class="username mb-2">shuzolotova <strong class="name">(Sasha Zotova)</strong></div>
-					<p class="bio">Marketing, Business Strategy</p>
-					<div class="extra-informations">
-						<p>No. Telp: 555-555-555</p>
-						<p>Kota: Bandung</p>
-						<p>Alamat: Jl. Ahmad Yani No.522</p>
+				<div class="col-md-8 mb-4">
+					<div class="card">
+						<h5 class="card-header">Keahlian</h5>
+						<div class="card-body">
+							<div class="badge badge-pill badge-dark py-2 px-3 mb-2">Web Development</div>
+							<div class="badge badge-pill badge-dark py-2 px-3 mb-2">Frontend Development</div>
+							<div class="badge badge-pill badge-dark py-2 px-3 mb-2">Backend Development</div>
+							<div class="badge badge-pill badge-dark py-2 px-3 mb-2">HTML, CSS, Javascript</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-8 mb-4">
+					<div class="card">
+						<h5 class="card-header">Mencari Co-Founder dengan keahlian</h5>
+						<div class="card-body">
+							<div onclick="tes()" class="badge badge-pill badge-dark py-2 px-3 mb-2">Design</div>
+							<div class="badge badge-pill badge-dark py-2 px-3 mb-2">Web Design</div>
+							<div class="badge badge-pill badge-dark py-2 px-3 mb-2">UI/UX Designer</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -67,5 +89,6 @@
 
 	<!-- Custom Scripts -->
 	<script type="module" src="js/script.js"></script>
+
 </body>
 </html>
