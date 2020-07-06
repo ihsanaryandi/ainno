@@ -48,11 +48,18 @@
                      <div class="form-group">
                         <label for="skill">Keahlian</label>
                         <input class="form-control" type="text" name="skill" id="skill" autocomplete="off" placeholder="Keahlian..." data-autocomplete="#skillResults" data-results-show="#skillsSelected" data-results-input="#skillsSelectedInput">
-                        <input type="hidden" name="skills-selected">
+                        
+                        <!------------ Actual Selected Skills ------------>
+                        <input type="hidden" name="skills-selected" id="skillsSelectedInput">
+
+                        <!------------ Autocomplete ------------>
                         <div class="autocomplete" id="skillResults">
                            <div class="result" data-value="Web Development">Web Development</div>
                         </div>
+
                      </div>
+
+                     <!------------ Selected Skills ------------>
                      <div id="skillsSelected">
                         <span class="badge badge-pill badge-light" id="selectedSkill">
                            <span class="remove">&times;</span>
@@ -114,7 +121,7 @@
                       <div class="col-md-8">
                         <div class="card-body">
                           <h5 class="card-title">
-                             <a class="text-decoration-none text-dark" href="profile.html">Jill Valentine</a>
+                             <a class="text-decoration-none text-dark" href="profile.html">jill_valentine205</a>
                           </h5>
                           <p class="card-text">
                              Software Engineering, Web Developer, SEO
@@ -123,7 +130,7 @@
                              <small class="text-muted">Bandung, Jl. Ahmad Yani Gg. Saluyu No. 52</small>
                           </p>
                           <a class="btn btn-primary" href="#">Hubungkan</a>
-                          <a class="btn btn-outline-secondary" href="#">Kontak</a>
+                          <a class="btn btn-outline-secondary" href="profile.html">Lihat Profil</a>
                         </div>
                       </div>
                     </div>
@@ -138,7 +145,7 @@
                       <div class="col-md-8">
                         <div class="card-body">
                           <h5 class="card-title">
-                             <a class="text-decoration-none text-dark" href="profile.html">Jill Valentine</a>
+                             <a class="text-decoration-none text-dark" href="profile.html">jill.valentine</a>
                           </h5>
                           <p class="card-text">
                              Software Engineering, Web Developer, SEO
@@ -147,7 +154,7 @@
                              <small class="text-muted">Bandung, Jl. Ahmad Yani Gg. Saluyu No. 52</small>
                           </p>
                           <a class="btn btn-primary" href="#">Hubungkan</a>
-                          <a class="btn btn-outline-secondary" href="#">Kontak</a>
+                          <a class="btn btn-outline-secondary" href="profile.html">Lihat Profil</a>
                         </div>
                       </div>
                     </div>

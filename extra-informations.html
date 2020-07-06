@@ -21,12 +21,16 @@
 					<div class="card">
 						<form class="card-body" method="POST" action="" enctype="multipart/form-data">
 							<h5 class="mb-3 text-center">Profil</h5>
-							<h6 class="mb-3">Foto Profil</h6>
+							<h6 class="mb-3">Profil</h6>
 							<div class="custom-file mb-3">
 								<input type="file" class="custom-file-input" id="profilePicture">
 								<label class="custom-file-label" for="profilePicture">Pilih foto...</label>
 							</div>
-							<h6 class="mb-3">Keahlian</h6>
+							<div class="form-group">
+								<label for="bio">Bio</label>
+								<textarea class="form-control" name="bio" id="bio" placeholder="Kesankan para co-founder..."></textarea>
+							</div>
+							<h6 class="mb-3">Keahlian <span class="text-danger">*</span></h6>
 							<div class="form-group">
 								<input class="form-control is-invalid" type="text" placeholder="Software Engineering, Design, etc..." data-autocomplete="#skillResults" autocomplete="off" data-results-input="#skillsSelectedResults" data-results-show="#skillsSelected">
 
@@ -56,12 +60,8 @@
 
 							<h6 class="mb-3">Tempat Tinggal</h6>
 							<div class="form-group">
-								<label for="city">Kota</label>
+								<label for="city">Kota <span class="text-danger">*</span></label>
 								<input class="form-control" type="text" id="city" name="city" placeholder="Kota...">
-							</div>
-							<div class="form-group">
-								<label for="alamat">Alamat</label>
-								<textarea class="form-control" id="address" name="address" placeholder="Alamat..." rows="2"></textarea>
 							</div>
 							<button class="btn btn-primary d-block w-100" type="submit">Lanjut</button>
 						</form>

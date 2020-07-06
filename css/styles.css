@@ -88,3 +88,26 @@ nav.navbar .navbar-nav img.profile-picture {
 .card .card-body .answer-section.show {
 	display: block;
 }
+
+.profile-picture {
+	width: 200px;
+	height: 200px;
+	border-radius: 50%;
+	object-fit: cover;
+}
+
+.username {
+	font-size: 1.8rem;
+}
+
+.username .name {
+	font-size: 1.2rem;
+	color: #777;
+}
+
+
+
+
+
+
+

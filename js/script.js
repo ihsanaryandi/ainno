@@ -2,8 +2,6 @@ import { find, findAll } from './utils.js'
 import autoComplete from './autoComplete.js'
 
 // Auto Complete
-let results = []
-
 autoComplete('#cityAutocompleteInput', {
 	onRemoveResult: (element, results) => {
 		results.splice(
