@@ -2,23 +2,25 @@
 	- ID
 	- Nama
 	- Username
-	- Password
-	- Keahlian
-	- Kota
-	- Alamat Tinggal
-	- Foto Profil
-	- Deskripsi
-	- No. Telp
-
-2. Adviser (Penasihat)
-	- ID
-	- Nama
 	- Email
 	- Password
 	- Keahlian
 	- Kota
-	- Alamat Tinggal
 	- Foto Profil
+	- Bio
+	- No. Telp (not sure)
+
+2. Adviser (Penasihat)
+	- ID
+	- Nama
+	- Username
+	- Email
+	- Password
+	- Keahlian
+	- Kota
+	- Bio
+	- Foto Profil
+	- No. Telp (not sure)
 	- Gelar/Jabatan
 
 3. Grup Bisnis

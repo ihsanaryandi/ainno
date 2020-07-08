@@ -1,64 +1,79 @@
 import { find, findAll } from './utils.js'
-import autoComplete from './autoComplete.js'
+import autocomplete from './autoComplete.js'
 
 // Auto Complete
-autoComplete('#cityAutocompleteInput', {
-	onRemoveResult: (element, results) => {
-		results.splice(
-			results.findIndex(result => result === element.nextElementSibling.innerText),
-			1
-		)
-		return results
-	},
-
-	onRenderResults: (resultsShowElement, results) => {
-		resultsShowElement.innerHTML = ''
-
-		results.forEach(result => {
-			resultsShowElement.innerHTML += 
-				`<span class="badge badge-pill badge-light" id="selectedCity">
-                   <span class="remove" data-remove-result>&times;</span>
-                   <span>${result}</span>
-                 </span>`
-		})
-	}
-})
-
-// autoComplete('#cityAutocompleteInput', (value) => {
-// 	results.push(value)
-
-// 	updateInput(inputElement, results)
-// 	renderResults(selectedCitiesElement, results)
-// })
-
-// selectedCitiesElement.addEventListener('click', e => {
-// 	if(e.target.hasAttribute('data-remove-result')) {
+// autoComplete('#cityAutocompleteInput', {
+// 	onRemoveResult: (element, results) => {
 // 		results.splice(
-// 			results.findIndex(result => result === e.target.nextElementSibling.innerText),
+// 			results.findIndex(result => result === element.nextElementSibling.innerText),
 // 			1
 // 		)
-// 		console.log(results)
+// 		return results
+// 	},
 
-// 		updateInput(inputElement, results)
-// 		renderResults(selectedCitiesElement, results)
+// 	onRenderResults: (resultsShowElement, results) => {
+// 		resultsShowElement.innerHTML = ''
+
+// 		results.forEach(result => {
+// 			resultsShowElement.innerHTML += 
+// 				`<span class="badge badge-pill badge-light" id="selectedCity">
+//                    <span class="remove" data-remove-result>&times;</span>
+//                    <span>${result}</span>
+//                  </span>`
+// 		})
 // 	}
 // })
 
-// function updateInput(inputElement, results) {
-// 	inputElement.value = results.join(',')
-// }
+autocomplete('[data-autocomplete="#skillsAutocomplete"]', {
+	onInput: (input, setData) => {
+		if(!input.length > 0) return
+			
+		fetch(`https://jsonplaceholder.typicode.com/users`)
+			.then(res => res.json())
+			.then(data => {
+				
+				let newData = []
+				data.forEach(user => newData.push(user.name))
 
-// function renderResults(parentElement, results) {
-// 	parentElement.innerHTML = ''
+				setData(newData)
+			})
+	},
 
-// 	results.forEach(result => {
-// 		parentElement.innerHTML += 
-// 			`<span class="badge badge-pill badge-light">
-//                <span class="remove" data-remove-result>&times;</span>
-//                <span>${result}</span>
-//              </span>`
-// 	})
-// }
+	onRemoveResult: (element, resultsShowElement, results) => {
+		results.splice(
+			results.findIndex(result => result == element.nextElementSibling.innerText),
+			1
+		)
+
+		resultsShowElement.innerHTML = ''
+
+		results.forEach(result => {
+			resultsShowElement.innerHTML += `
+				<span class="badge badge-pill badge-light">
+					<span class="remove" data-remove-result>&times;</span>
+					<span>${result}</span>
+				</span>
+			`
+		})
+
+		return results
+	},
+
+	setRenderElements: (results) => {
+		let elements = []
+
+		results.forEach(result => {
+			elements.push(`
+				<span class="badge badge-pill badge-light">
+					<span class="remove" data-remove-result>&times;</span>
+					<span>${result}</span>
+				</span>
+			`) 
+		})
+
+		return elements
+	}
+})
 
 // Answer Button
 findAll('button#seeAnswer', 'click', ({ el }) => {

@@ -49,7 +49,10 @@
 							<div class="profile-picture">
 								<img src="img/co-founder.jpg">
 							</div>
-							<div class="username mb-2">shuzolotova <strong class="name">(Sasha Zotova)</strong></div>
+							<div class="username mb-2">
+								shuzolotova  <!-- USERNAME -->
+								<strong class="name">(Sasha Zotova)</strong>  <!-- NAME : not required --> 
+							</div>
 							<p><strong class="city">Bandung, Indonesia</strong></p>
 							<p class="bio">Founder of Google</p>
 							<a href="edit-profile.html" class="btn btn-secondary w-50 m-auto">Edit Profil</a>
@@ -58,7 +61,10 @@
 				</div>
 				<div class="col-md-8 mb-4">
 					<div class="card">
-						<h5 class="card-header">Keahlian</h5>
+						<div class="card-header d-flex align-items-center justify-content-between">
+							<h5 class="m-0">Keahlian</h5>
+							<a href="#changeSkills" data-toggle="modal" data-modal="#changeSkills">Edit</a>
+						</div>
 						<div class="card-body">
 							<div class="badge badge-pill badge-dark py-2 px-3 mb-2">Web Development</div>
 							<div class="badge badge-pill badge-dark py-2 px-3 mb-2">Frontend Development</div>
@@ -69,7 +75,10 @@
 				</div>
 				<div class="col-md-8 mb-4">
 					<div class="card">
-						<h5 class="card-header">Mencari Co-Founder dengan keahlian</h5>
+						<div class="card-header d-flex align-items-center justify-content-between">
+							<h5 class="m-0">Mencari Co-Founder dengan keahlian</h5>
+							<a href="#changeSkills" data-toggle="modal" data-modal="#changeSkills">Edit</a>
+						</div>
 						<div class="card-body">
 							<div onclick="tes()" class="badge badge-pill badge-dark py-2 px-3 mb-2">Design</div>
 							<div class="badge badge-pill badge-dark py-2 px-3 mb-2">Web Design</div>
@@ -80,6 +89,52 @@
 			</div>
 		</div>
 	</main>
+
+	<div class="modal fade" id="changeSkills" tabindex="-1" role="dialog" aria-labelledby="changeSkillsModal" aria-hidden="true">
+     <div class="modal-dialog">
+       <form class="modal-content">
+         <div class="modal-header">
+           <h5 class="modal-title">Keahlian</h5>
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+           </button>
+         </div>
+         <div class="modal-body">
+ 			<div class="form-group">
+				<input class="form-control" 
+					   type="text" 
+					   placeholder="Software Engineering, Design, etc..." 
+					   id="skillsAutocomplete" 
+					   autocomplete="off" 
+					   data-results-input="#skillsSelectedInput" 
+					   data-results-show="#skillsSelectedShow"
+					   data-autocomplete="#skillsAutocomplete"
+				>
+
+				<!------------ If the Actual Skill Results were empty. GIVE THEM A FEEDBACK!!! ------------>
+				<div class="invalid-feedback">Keahlian tidak boleh kosong</div>
+
+				<!------------ Actual Skill Results ------------>
+            	<input type="hidden" name="skills-selected" id="skillsSelectedInput">
+            	<!------------ /Actual Skill Results ------------>
+
+				<div class="autocomplete" id="skillsAutocomplete">
+                   <!-- <div class="result" data-value="Web Development">Web Development</div>
+                   <div class="result" data-value="Marketing">Marketing</div> -->
+                   
+                   <!-- If There are no results -->
+                   <!-- <div class="no-results"><strong>Tidak ada hasil</strong></div> -->
+                </div>
+			</div>
+			<div id="skillsSelectedShow"></div>
+         </div>
+         <div class="modal-footer">
+     	   <button class="btn btn-primary" type="submit">Edit</button>
+           <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+         </div>
+       </form>
+     </div>
+   </div>
 
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
