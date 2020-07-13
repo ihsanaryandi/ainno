@@ -16,9 +16,9 @@
 							<label for="password">Password</label>
 							<input class="form-control" type="password" id="password" name="password" placeholder="Password...">
 						</div>
-						<p>Belum Punya akun ? <a href="register.html" data-toggle="modal" data-target="#chooseRoleModal">Daftar</a></p>
+						<p>Belum Punya akun ? <a href="#chooseRoleModal" data-toggle="modal" data-target="#chooseRoleModal">Daftar</a></p>
 						<button class="btn btn-primary d-block w-100" type="submit">Login</button>
-						<a href="#" onclick="history.back()" class="btn btn-outline-primary d-block w-100 mt-2">Kembali</a>
+						<a href="/" class="btn btn-outline-primary d-block w-100 mt-2">Kembali</a>
 					</form>
 				</div>
 			</div>
