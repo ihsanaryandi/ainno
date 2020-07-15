@@ -4,16 +4,12 @@ import autocomplete from './autoComplete.js'
 autocomplete('[data-autocomplete="#skillsAutocomplete"]', {
 	onInput: (input, setData) => {
 		if(!input.length > 0) return
-			
-		fetch(`https://jsonplaceholder.typicode.com/users`)
-			.then(res => res.json())
-			.then(data => {
-				
-				let newData = []
-				data.forEach(user => newData.push(user.name))
-
-				setData(newData)
-			})
+		
+		setData([
+			'Skill 1',
+			'Skill 2',
+			'Skill 3'
+		]);
 	},
 
 	onRemoveResult: (element, resultsShowElement, results) => {

@@ -60,6 +60,7 @@ export default function autocomplete(selector, { onInput, onRemoveResult, setRen
 		renderResults(elements)
 
 		autoCompleteElement.classList.remove('autocomplete-results-show')
+		inputElement.value = '';
 	})
 
 	resultsShowElement.addEventListener('click', e => {

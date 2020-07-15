@@ -12,15 +12,15 @@
      </div>
      <div class="modal-body">
         <div class="list-group">
-           <a href="/auth/register?r=looking_cofounder" class="list-group-item list-group-item-action list-group-item-light">
+           <a href="/auth/sign_up?r=looking_cofounder" class="list-group-item list-group-item-action list-group-item-light">
               <strong>Mencari Co-Founder</h6><br>
               <small class="text-muted">Cari Co-Founder yang anda inginkan dengan berbagai macam keahlian.</small>
            </a>
-           <a href="/auth/register?r=looking_adviser" class="list-group-item list-group-item-action list-group-item-light">
+           <a href="/auth/sign_up?r=looking_adviser" class="list-group-item list-group-item-action list-group-item-light">
               <strong>Mencari Adviser (Penasihat)</h6><br>
               <small class="text-muted">Cari Adviser yang anda inginkan untuk membimbing bisnis Anda.</small>
            </a>
-           <a href="/auth/register?r=adviser" class="list-group-item list-group-item-action list-group-item-light">
+           <a href="/auth/sign_up?r=adviser" class="list-group-item list-group-item-action list-group-item-light">
               <strong>Adviser (Penasihat)</h6><br>
               <small class="text-muted">Membantu memberikan saran/nasihat kepada para pebisnis pemula.</small>
            </a>

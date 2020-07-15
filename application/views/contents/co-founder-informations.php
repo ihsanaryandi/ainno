@@ -6,12 +6,13 @@
 					<form class="card-body" method="POST" action="">
 						<h5 class="text-center">Co Founder</h5>
 						<small class="d-block text-center mb-3">Co Founder seperti apa yang anda inginkan ?</small>
-						<h6 class="mb-3">Keahlian</h6>
 						<div class="form-group">
+							<label for="skills">Keahlian</label>
 							<input class="form-control is-invalid" 
 								   type="text" 
 								   placeholder="Software Engineering, Design, etc..." 
 								   autocomplete="off"
+								   id="skills"
 								   data-autocomplete="#skillsAutocomplete" 
 								   data-results-input="#skillsSelectedInput" 
 								   data-results-show="#skillsSelectedShow"
@@ -27,8 +28,8 @@
 							<div class="autocomplete" id="skillsAutocomplete"></div>
 						</div>
 						<div class="mb-3" id="skillsSelectedShow"></div>
-						<h6 class="mb-3">Kota</h6>
 						<div class="form-group">
+							<label for="city">Kota</label>
 							<input class="form-control" type="text" id="city" autocomplete="off" placeholder="Bandung, Jakarta, etc..." data-autocomplete="#cityResults" data-results-show="#citiesSelected" data-results-input="#citiesSelectedInput">
 							
 							<!------------ Actual Cities Input ------------>

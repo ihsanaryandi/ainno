@@ -3,30 +3,37 @@
 		<div class="row justify-content-center">
 			<div class="col-md-6">
 				<div class="card">
-					<form class="card-body" method="POST" action="co-founder-informations.html" enctype="multipart/form-data">
+					<form class="card-body" method="POST" action="" enctype="multipart/form-data">
 						<h5 class="mb-3 text-center">Profil</h5>
-						<h6 class="mb-3">Profil</h6>
-						<div class="custom-file mb-3">
-							<input type="file" class="custom-file-input" name="profile-picture" id="profilePicture">
-							<label class="custom-file-label" for="profilePicture">Pilih foto...</label>
+						<div class="form-group">
+							<label for="profilePicture">Foto Profil</label>
+							<div class="custom-file">
+								<input type="file" class="custom-file-input" name="profile-picture" id="profilePicture">
+								<label class="custom-file-label" for="profilePicture">Pilih foto...</label>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="name">Nama</label>
+							<input class="form-control" name="name" id="name">
 						</div>
 						<div class="form-group">
 							<label for="bio">Bio</label>
 							<textarea class="form-control" name="bio" id="bio" placeholder="Kesankan para co-founder..."></textarea>
 						</div>
-						<h6 class="mb-3">Keahlian <span class="text-danger">*</span></h6>
 						<div class="form-group">
-							<input class="form-control is-invalid" 
+							<label for="skills">Keahlian <span class="text-danger">*</span></label>
+							<input class="form-control <?= isError('skills-selected'); ?>" 
 								   type="text" 
-								   placeholder="Software Engineering, Design, etc..." 
+								   placeholder="Software Engineering, Design, dll..." 
 								   autocomplete="off"
+								   id="skills" 
 								   data-autocomplete="#skillsAutocomplete" 
 								   data-results-input="#skillsSelectedInput" 
 								   data-results-show="#skillsSelectedShow"
 							>
 
 							<!------------ If the Actual Skill Results were empty. GIVE THEM A FEEDBACK!!! ------------>
-							<div class="invalid-feedback">Keahlian tidak boleh kosong</div>
+							<div class="invalid-feedback"><?= form_error('skills-selected'); ?></div>
 
 							<!------------ Actual Skill Results ------------>
                         	<input type="hidden" name="skills-selected" id="skillsSelectedInput">
@@ -36,17 +43,11 @@
 						</div>
 
                         <div class="mb-3" id="skillsSelectedShow"></div>
-						
-						<!-- <h6 class="mb-3">Kontak</h6>
-						<div class="form-group">
-							<label for="phone">No. Telp</label>
-							<input class="form-control" type="text" id="phone" name="phone" placeholder="08xxxxxxxxx">
-						</div> -->
 
-						<h6 class="mb-3">Tempat Tinggal</h6>
 						<div class="form-group">
 							<label for="city">Kota <span class="text-danger">*</span></label>
-							<input class="form-control" type="text" id="city" name="city" placeholder="Kota...">
+							<input class="form-control <?= isError('city'); ?>" type="text" id="city" name="city" placeholder="Kota...">
+							<div class="invalid-feedback"><?= form_error('city'); ?></div>
 						</div>
 						<button class="btn btn-primary d-block w-100" type="submit">Lanjut</button>
 					</form>
