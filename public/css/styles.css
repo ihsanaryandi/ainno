@@ -121,5 +121,18 @@ nav.navbar .navbar-nav img.profile-picture {
 	text-decoration: underline;
 }
 
+.group-card .description {
+	height: 75px;
+	overflow: hidden;
+}
+
+.create-group-users {
+	max-height: 400px;
+	overflow-y: auto;
+}
+
+
+
+
 
 

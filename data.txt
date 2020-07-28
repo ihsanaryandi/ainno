@@ -8,7 +8,6 @@
 	- Kota
 	- Foto Profil
 	- Bio
-	- No. Telp (not sure)
 
 2. Adviser (Penasihat)
 	- ID
@@ -20,17 +19,30 @@
 	- Kota
 	- Bio
 	- Foto Profil
-	- No. Telp (not sure)
 	- Gelar/Jabatan
 
 3. Grup Bisnis
-	- [Founder]
-	- [Co-Founder]
-	- Judul
+	- ID
+	- Creator : [Founder {Username}]
+	- Nama Grup
 	- Deskripsi
-	- Batas Co-Founder
 
+4. Planning
+	- ID
+	- [Grup Bisnis {ID}]
+	- Rencana
 
+5. Anggota Grup
+	- ID
+	- [Grup Bisnis {ID}]
+	- [Co-Founder {Username}]
+
+6. Jaringan
+	- ID
+	- [Founder {Username}]
+	- [Co-Founder {Username}]
+	- Status
+	
 // Google Maps API
 https://developers.google.com/places/web-service/autocomplete
 

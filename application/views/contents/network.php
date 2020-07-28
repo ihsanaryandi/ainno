@@ -59,31 +59,58 @@
               <input class="form-control" type="text" name="coFounder" id="coFounder" placeholder="Username...">
            </div>
            <div class="mt-5" id="coFounderResults">
-              <div class="card mb-3" style="max-width: 540px;">
-                <div class="row no-gutters">
-                  <div class="col-md-4">
-                    <a href="/profile?username=shuzolotova">
-                      <img src="<?= img('co-founder.jpg'); ?>" class="card-img" alt="Co-Founder" title="shuzolotova" style="width: 100%; height: 100%; object-fit: cover;">
-                    </a>
-                  </div>
-                  <div class="col-md-8">
-                    <div class="card-body">
-                      <h5 class="card-title">
-                         <a class="text-decoration-none text-dark d-block" href="/profile?username=shuzolotova">shuzolotova</a>
-                         <strong style="font-size: .9rem; color: #777;">(Sasha Zotova)</strong>
-                      </h5>
-                      <p class="card-text">
-                         Software Engineering, Web Developer, SEO
-                      </p>
-                      <p class="card-text">
-                         <small class="text-muted">Jakarta, Indonesia</small>
-                      </p>
-                      <a class="btn btn-primary" href="#">Hubungkan</a>
-                      <a class="btn btn-outline-secondary" href="/profile?username=shuzolotova">Lihat Profil</a>
+              <?php foreach($users as $user) : ?>
+                
+                <?php if($user['username'] !== user('username')) : ?>
+                  <div class="card mb-3" style="max-width: 540px;">
+                    <div class="row no-gutters">
+                      <div class="col-md-4">
+                        <a href="/profile?username=<?= $user['username']; ?>">
+                          <img src="<?= img($user['profile_picture']); ?>" class="card-img" alt="<?= $user['username']; ?>" title="<?= $user['username']; ?>" style="width: 100%; height: 100%; object-fit: cover;">
+                        </a>
+                      </div>
+                      <div class="col-md-8">       
+                        <div class="card-body">
+                          <h5 class="card-title">
+                             <a class="text-decoration-none text-dark d-block" href="/profile?username=<?= $user['username']; ?>"><?= $user['username']; ?></a>
+
+                             <?php if($user['name']) : ?>
+                               <strong style="font-size: .9rem; color: #777;">(<?= $user['name']; ?>)</strong>
+                             <?php endif; ?>
+
+                          </h5>
+                          <p class="card-text"><?= $user['bio']; ?></p>
+                          <p class="card-text">
+                             <small class="text-muted"><?= $user['city']; ?></small>
+                          </p>
+
+                          <?php if(user()) : ?>
+
+                            <?php if((int) $this->Network->status($user['username']) === 1) : ?>
+                              
+                              <button class="btn btn-primary disabled">Terhubung</button>
+                            
+                            <?php else : ?>
+
+                              <form class="d-inline" action="/network/connect" method="POST">  
+                                <?= csrf(); ?>
+
+                                <input type="hidden" name="username" value="<?= $user['username']; ?>">
+                                <button class="btn btn-primary" type="submit">Hubungkan</button>
+                              </form>
+
+                            <?php endif; ?>
+                          
+                          <?php endif; ?>
+                          
+                          <a class="btn btn-outline-secondary" href="/profile?username=<?= $user['username']; ?>">Lihat Profil</a>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
+                <?php endif; ?>     
+              
+              <?php endforeach; ?>
            </div>
         </div>
      </div>

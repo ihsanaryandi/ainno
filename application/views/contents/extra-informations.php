@@ -5,6 +5,8 @@
 				<div class="card">
 					<form class="card-body" method="POST" action="" enctype="multipart/form-data">
 						<h5 class="mb-3 text-center">Profil</h5>
+						
+						<?= csrf(); ?>
 						<div class="form-group">
 							<label for="profilePicture">Foto Profil</label>
 							<div class="custom-file">
@@ -14,11 +16,11 @@
 						</div>
 						<div class="form-group">
 							<label for="name">Nama</label>
-							<input class="form-control" name="name" id="name">
+							<input class="form-control" name="name" id="name" value="<?= user('name'); ?>">
 						</div>
 						<div class="form-group">
 							<label for="bio">Bio</label>
-							<textarea class="form-control" name="bio" id="bio" placeholder="Kesankan para co-founder..."></textarea>
+							<textarea class="form-control" name="bio" id="bio" placeholder="Kesankan para co-founder..."><?= user('bio'); ?></textarea>
 						</div>
 						<div class="form-group">
 							<label for="skills">Keahlian <span class="text-danger">*</span></label>
@@ -27,8 +29,8 @@
 								   placeholder="Software Engineering, Design, dll..." 
 								   autocomplete="off"
 								   id="skills" 
-								   data-autocomplete="#skillsAutocomplete" 
-								   data-results-input="#skillsSelectedInput" 
+								   data-autocomplete="#skillsAutocomplete"
+								   data-results-input="#skillsSelectedInput"
 								   data-results-show="#skillsSelectedShow"
 							>
 
@@ -46,10 +48,12 @@
 
 						<div class="form-group">
 							<label for="city">Kota <span class="text-danger">*</span></label>
-							<input class="form-control <?= isError('city'); ?>" type="text" id="city" name="city" placeholder="Kota...">
+							<input class="form-control <?= isError('city'); ?>" type="text" id="city" name="city" placeholder="Kota..." autocomplete="off" data-autocomplete="#citiesAutocomplete">
+							
+							<div class="autocomplete" id="citiesAutocomplete"></div>
 							<div class="invalid-feedback"><?= form_error('city'); ?></div>
 						</div>
-						<button class="btn btn-primary d-block w-100" type="submit">Lanjut</button>
+						<button class="btn btn-primary d-block w-100" type="submit">Kirim</button>
 					</form>
 				</div>
 			</div>

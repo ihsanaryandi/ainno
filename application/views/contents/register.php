@@ -5,6 +5,8 @@
 				<div class="card">
 					<form class="card-body" action="/auth/sign_up?r=<?= $this->input->get('r'); ?>" method="POST">
 						<h5 class="text-center mb-3">Daftar Ke Ainno</h5>
+
+						<?= csrf(); ?>
 						<input type="hidden" name="TYPE" value="<?= $this->input->get('r'); ?>">
 						<div class="form-group">
 							<label for="username">Username</label>

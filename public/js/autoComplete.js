@@ -1,6 +1,6 @@
 import { find, findAll } from './utils.js'
 
-export default function autocomplete(selector, { onInput, onRemoveResult, setRenderElements }) {
+export default function autocomplete(selector, { onInput, onRemoveResult, setRenderElements = null, onResultClick }) {
 	let results = []
 
 	const inputElement = find(selector)
@@ -25,7 +25,7 @@ export default function autocomplete(selector, { onInput, onRemoveResult, setRen
 	}
 
 	const setInputValue = (results) => {
-		resultsInputElement.value = results.join(',')
+		resultsInputElement.value = results.join('|')
 	}
 
 	const setData = (data) => {
@@ -53,22 +53,26 @@ export default function autocomplete(selector, { onInput, onRemoveResult, setRen
 
 		results.push(e.target.dataset.value)
 
-		setInputValue(results)
+		if(resultsInputElement) setInputValue(results);
 
-		const elements = setRenderElements(results)
+		const elements = (typeof setRenderElements === 'function') ? setRenderElements(results) : []
 
-		renderResults(elements)
+		if(resultsShowElement) renderResults(elements);
 
 		autoCompleteElement.classList.remove('autocomplete-results-show')
 		inputElement.value = '';
+		
+		if(typeof onResultClick === 'function') onResultClick(e.target.dataset.value, inputElement); 
 	})
 
-	resultsShowElement.addEventListener('click', e => {
-		if(e.target.hasAttribute('data-remove-result')) {
-			results = onRemoveResult(e.target, resultsShowElement, results)
-			setInputValue(results)
-		}
-	})
+	if(resultsShowElement) {
+		resultsShowElement.addEventListener('click', e => {
+			if(e.target.hasAttribute('data-remove-result')) {
+				results = onRemoveResult(e.target, resultsShowElement, results)
+				setInputValue(results)
+			}
+		})
+	}
 } 
 
 

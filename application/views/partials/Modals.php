@@ -1,6 +1,6 @@
 <!-- Modals -->
 
-<!-- Type Modal -->
+<!-- Register Type Modal -->
 <div class="modal fade" id="chooseRoleModal" tabindex="-1" role="dialog" aria-labelledby="chooseRoleModal" aria-hidden="true">
  <div class="modal-dialog">
    <div class="modal-content">

@@ -1,22 +1,22 @@
 <?php 
 
 function css($file) {
-	echo base_url("/public/css/$file.css");
+	return base_url("/public/css/$file.css");
 }
 
 function js($file) {
-	echo "/public/js/$file.js";
+	return "/public/js/$file.js";
 }
 
 function img($file) {
-	echo base_url("/public/img/$file");
+	return base_url("/public/img/$file");
 }
 
 function view($file, $data = []) {
 	$ci = get_instance();
 
 	$phpExt = explode('.', $file);
-
+	
 	switch (end($phpExt)) {
 		case 'php':
 			$data['FILE'] = $file;

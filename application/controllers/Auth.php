@@ -6,46 +6,57 @@ class Auth extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('Users', 'User');
+		$this->load->model('AuthModel', 'Auth');
+		
+		checkMethod();
 	}
 
 	public function sign_in()
 	{
-		$data['title'] = 'Sign In';
-		$data['hideNavbar'] = true;
-		view('login', $data);
+		isNotAuthenticated(function() {
+			$data['title'] = 'Sign In';
+			$data['hideNavbar'] = true;
+
+			if(!isPost()) return view('login', $data);
+
+			if($user = $this->Auth->sign_in())
+			{
+				$this->session->set_userdata('username', $user['username']);
+
+				return redirect('/network');
+			}
+
+			$this->session->set_flashdata('errorLogin', 
+		    '<div class="alert alert-danger" role="alert">
+			   Akun tidak terdaftar
+			 </div>
+		    ');
+
+			return redirect('/auth/sign_in');
+		});
 	}
 
 	public function sign_up()
 	{
-		if(!$this->_checkRegisterType()) return redirect('/');
+		isNotAuthenticated(function() {
+			if(!$this->_checkRegisterType()) return redirect('/');
 
-		$data['title'] = 'Sign Up';
-		$data['hideNavbar'] = true;
+			$data['title'] = 'Sign Up';
+			$data['hideNavbar'] = true;
 
-		if(!isPost()) return view('register', $data);
+			if(!isPost()) return view('register', $data);
 
-		$this->_registration($data);
+			$this->_registration($data);
+		});
 	}
 
-	public function extra_informations() {
-		$data['title'] = 'Extra Informations';
-		$data['hideNavbar'] = true;
-
-		if(!isPost()) return view('extra-informations', $data);
-
-		if(!$this->form_validation->run('extraInformations')) return view('extra-informations', $data);
-
-		if($this->User->addExtraInformations()) return redirect('/auth/cofounder_informations');
-		
-		echo "Insert data failed";
+	public function sign_out() 
+	{
+		isAuthenticated(function() {
+			$this->session->unset_userdata('username');
+			return redirect('/');
+		});
 	}
-
-	public function cofounder_informations() {
-		$data['title'] = 'Co-Founder Informations';
-		$data['hideNavbar'] = true;
-		view('co-founder-informations', $data);
-	}
-
 
 
 
@@ -53,7 +64,7 @@ class Auth extends CI_Controller {
 	{
 		if(!$this->form_validation->run('signUp')) return view('register', $data);
 
-		if($this->User->register()) return redirect('/auth/extra_informations');
+		if($this->Auth->register()) return redirect('/extras/profile');
 	
 		echo "Insert data failed";
 	}

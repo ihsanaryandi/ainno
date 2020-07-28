@@ -48,6 +48,67 @@ autocomplete('[data-autocomplete="#skillsAutocomplete"]', {
 	}
 })
 
+autocomplete('[data-autocomplete="#coFounderCitiesAutocomplete"]', {
+	onInput: (input, setData) => {
+		if(!input.length > 0) return
+		
+		setData([
+			'Bandung',
+			'Jakarta',
+			'Solo'
+		]);
+	},
+
+	onRemoveResult: (element, resultsShowElement, results) => {
+		results.splice(
+			results.findIndex(result => result == element.nextElementSibling.innerText),
+			1
+		)
+
+		resultsShowElement.innerHTML = ''
+
+		results.forEach(result => {
+			resultsShowElement.innerHTML += `
+				<span class="badge badge-pill badge-light">
+					<span class="remove" data-remove-result>&times;</span>
+					<span>${result}</span>
+				</span>
+			`
+		})
+
+		return results
+	},
+
+	setRenderElements: (results) => {
+		let elements = []
+
+		results.forEach(result => {
+			elements.push(`
+				<span class="badge badge-pill badge-light">
+					<span class="remove" data-remove-result>&times;</span>
+					<span>${result}</span>
+				</span>
+			`) 
+		})
+
+		return elements
+	}
+})
+
+autocomplete('[data-autocomplete="#citiesAutocomplete"]', {
+	onInput: (input, setData) => {
+		if(!input.length > 0) return
+		
+		setData([
+			'Bandung',
+			'Jakarta',
+			'Solo'
+		]);
+	},
+
+	onResultClick: (result, inputElement) => inputElement.value = result
+})
+
 // Answer Button
 findAll('button#seeAnswer', 'click', ({ el }) => {
 	el.classList.add('show')

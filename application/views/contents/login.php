@@ -3,14 +3,14 @@
 		<div class="row justify-content-center">
 			<div class="col-md-5">
 				<div class="card">
-					<form class="card-body">
+					<form class="card-body" action="" method="POST">
 						<h5 class="text-center mb-3">Masuk Ke Ainno</h5>
-						<div class="alert alert-danger" role="alert">
-						  Akun tidak terdaftar
-						</div>
+						<?= $this->session->flashdata('errorLogin'); ?>
+						
+						<?= csrf(); ?>
 						<div class="form-group">
 							<label for="emailOrUsername">Email/Username</label>
-							<input class="form-control" type="text" id="emailOrUsername" name="email-username" placeholder="Email atau Username...">
+							<input class="form-control" type="text" id="emailOrUsername" name="email-username" placeholder="Email atau Username..." autofocus>
 						</div>
 						<div class="form-group">
 							<label for="password">Password</label>

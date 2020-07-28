@@ -37,7 +37,23 @@ $config =
 			'label' => 'City',
 			'rules' => 'required',
 		]
-	]
+	],
+
+	'coFounderInformations' => [
+		[
+			'field' => 'skills-selected',
+			'label' => 'Skills',
+			'rules' => 'required'
+		]
+	],
+
+	'createGroup' => [
+		[
+			'field' => 'group-name',
+			'label' => 'Group Name',
+			'rules' => 'required'
+		],
+	],
 ];
 
 ?>
