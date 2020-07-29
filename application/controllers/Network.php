@@ -8,6 +8,7 @@ class Network extends CI_Controller {
 
 		$this->load->model('Users', 'User');
 		$this->load->model('Networks', 'Network');
+		$this->load->model('NetworkRequests', 'NetworkRequest');
 	}
 
 	public function index()
@@ -22,9 +23,9 @@ class Network extends CI_Controller {
 	{
 		if(!isPost()) return show_404();
 
-		if($this->Network->getNetwork($this->input->post('username'))) return redirect('/network');
+		if($this->NetworkRequest->isRequested($this->input->post('username'))) return redirect('/network');
 
-		if($this->Network->create()) return redirect('/network');
+		if($this->NetworkRequest->create()) return redirect('/network');
 		
 		echo "Gagal menghubungkan";
 	}

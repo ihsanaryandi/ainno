@@ -18,92 +18,63 @@ class Networks extends CI_Model {
 		])->row_array();
 	}
 
-	public function getNetworkRequests()
-	{
-		return $this->db->select('users.user_id, users.username, users.profile_picture, networks.status')
-						->from('users')
-						->join('networks', 'username = founder_username')
-						->where([
-							'co_founder_username' => user('username'),
-							'status' => 0
-						])
-						->get()
-						->result_array();
-	}
-
 	public function getConnectedNetworks()
 	{
-		$results = [];
-
-		$networks = $this->db->select('*')
-							 ->from('networks')
+		$networks = $this->db->select('users.user_id, users.username, users.profile_picture')
+							 ->from('users')
+							 ->join('networks', 'username = founder_username')
 							 ->where('co_founder_username', user('username'))
-							 ->or_where('founder_username', user('username'))
 							 ->get()
 							 ->result_array();
 
-		foreach ($networks as $network) 
-		{
-			if($network['co_founder_username'] !== user('username') && (int) $network['status'] === 1) 
-			{
-				$results[] = $this->User->getUser($network['co_founder_username']);
-			}
-			elseif($network['founder_username'] !== user('username') && (int) $network['status'] === 1)
-			{
-				$results[] = $this->User->getUser($network['founder_username']);
-			}
-		}
-
-		return $results;
+		return $networks;
 	}
 
-	public function create()
+	public function disconnect($username)
 	{
-		$data = [
-			'founder_username' => user('username'),
-			'co_founder_username' => $this->input->post()['username'],
-			'status' => 'NOTACC'
+
+		$whereRequest = [
+			'username_request' => $username,
+			'co_founder_username' => user('username')
 		];
 
-		$this->db->insert('networks', $data);
+		$whereNetworks = [
+			[
+				'founder_username' => $username,
+				'co_founder_username' => user('username')
+			],
+			[
+				'founder_username' => user('username'),
+				'co_founder_username' => $username
+			],
+		];
 
-		return $this->db->affected_rows();
-	}
-
-	public function updateStatus($username, $status)
-	{
-		$this->db->update('networks', ['status' => (int) $status], [
-			'co_founder_username' => user('username'),
-			'founder_username' => $username,
-		]);
-
-		return $this->db->affected_rows();
-	}
-
-	public function delete($username)
-	{
-		$this->db->where('co_founder_username', $username)
-				 ->or_where('founder_username', $username);
-
-		$this->db->delete('networks');
-
-		return $this->db->affected_rows();
-	}
-
-	public function status($username)
-	{
-		$networkStatus = $this->db->select('status')
-								  ->get_where('networks', [
-									  'founder_username' => user('username'),
-									  'co_founder_username' => $username,
-								  ])->row_array();
-
-		if($networkStatus) 
+		$this->db->delete('network_requests', $whereRequest);
+	
+		foreach ($whereNetworks as $where) 
 		{
-			return (int) $networkStatus['status'];
+			$this->db->delete('networks', $where);
 		}
 
-		return false;
+		return $this->db->affected_rows();
+
+	}
+
+	public function isConnected($username)
+	{
+		$result = $this->db->get_where('networks', [
+			'founder_username' => user('username'),
+			'co_founder_username' => $username
+		])->num_rows();
+
+		if($result) return $result;
+
+		$result = $this->db->get_where('networks', [
+			'founder_username' => $username,
+			'co_founder_username' => user('username')
+		])->num_rows();
+
+		return $result;
 	}
 
 }

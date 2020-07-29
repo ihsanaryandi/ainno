@@ -86,7 +86,7 @@
 
                           <?php if(user()) : ?>
 
-                            <?php if((int) $this->Network->status($user['username']) === 1) : ?>
+                            <?php if((int) $this->Network->isConnected($user['username'])) : ?>
                               
                               <button class="btn btn-primary disabled">Terhubung</button>
                             

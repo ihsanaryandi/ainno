@@ -8,6 +8,7 @@ class Network_Request extends CI_Controller {
 		parent::__construct();
 
 		$this->load->model('Networks', 'Network');
+		$this->load->model('networkRequests', 'NetworkRequest');
 
 		checkMethod();
 	}
@@ -16,7 +17,7 @@ class Network_Request extends CI_Controller {
 	{
 		isAuthenticated(function(){
 			$data['title'] = 'Network Requests';
-			$data['networkRequests'] = $this->Network->getNetworkRequests();	
+			$data['networkRequests'] = $this->NetworkRequest->getNetworkRequests();
 			$data['connectedNetworks'] = $this->Network->getConnectedNetworks();
 
 			view('network-requests', $data);
@@ -27,7 +28,10 @@ class Network_Request extends CI_Controller {
 	{
 		if(!isPut()) return show_404();
 
-		if($this->Network->updateStatus($this->input->post('username'), 1)) return redirect('/network_request');
+		if($this->NetworkRequest->createNetworks($this->input->post('username')))
+		{
+			return redirect('/network_request');
+		}
 
 		echo "Gagal menerima";
 	}
@@ -36,7 +40,10 @@ class Network_Request extends CI_Controller {
 	{
 		if(!isDelete()) return show_404();
 
-		if($this->Network->updateStatus($this->input->post('username'), 0)) return redirect('/network_request');
+		if($this->NetworkRequest->deleteRequest($this->input->post('username'))) 
+		{
+			return redirect('/network_request');
+		}
 
 		echo "Gagal menolak";
 	}
@@ -45,7 +52,7 @@ class Network_Request extends CI_Controller {
 	{
 		if(!isDelete()) return show_404();
 
-		if($this->Network->delete($this->input->post('username'))) return redirect('/network_request');
+		if($this->Network->disconnect($this->input->post('username'))) return redirect('/network_request');
 
 		echo "Gagal memutuskan";
 	}
