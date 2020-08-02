@@ -51,7 +51,7 @@
 									<h6 class="ml-3"><?= $network['username']; ?></h6>
 								</a>
 								<div class="cta">
-									<form class="d-inline" action="/network_request/disconnect" method="POST">
+									<form class="d-inline" action="/network/disconnect" method="POST">
 										<?= csrf(); ?>
 										<?= method('DELETE'); ?>
 										<input type="hidden" name="username" value="<?= $network['username']; ?>">

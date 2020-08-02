@@ -1,7 +1,62 @@
-1. Founder(One) [MENCARI/TERHUBUNG] Co-Founder(Many)
+Cara Kerja :
+- User akan ditampilkan halaman home
 
-2. Founder(One) [KONSULTASI] Adviser(One)
 
-3. Founder(One) [BUAT] GrupBisnis(Many)
+-----AUTENTIKASI-----
+- User dapat login, jika belum ada akun maka user harus registrasi terlebih dahulu
+- User dapat registrasi, data registrasi sendiri yaitu :
+	1. Username
+	2. Email
+	3. Password
 
-4. Founder(One) [CHAT] Co-Founder(Many) 
+
+-----DATA TAMBAHAN-----
+- Selesai registrasi, user akan diarahkan ke halaman Extra Informations, yang tujuannya adalah untuk menyimpan data tambahan user seperti :
+	1. Foto Profil
+	2. Nama
+	3. Bio
+	4. Keahlian (Wajib diisi)
+	5. Kota (Wajib diisi)
+
+
+-----DATA CO-FOUNDER-----
+- Selesai mengisi data tambahan, user akan diarahkan ke halaman Co-Founder Informations, yaitu untuk menyimpan data keahlian Co-Founder yang diinginkan user, datanya yaitu :
+	1. Keahlian (Wajib)
+	2. Kota
+
+
+-----NETWORK-----
+- Selesai mengisi data Co-Founder user akan diarahkan ke halaman Network yang mana akan ditampilkan user-user lain untuk dijadikan Co-Foundernya
+- User dapat melakukan pencarian berdasarkan keahlian yang diinginkan atau berasarkan kota
+- User dapat mencari user lain sesuai username atau nama
+- User dapat membuat jaringan dengan user lain, yaitu dengan cara mengklik tombol hubungkan pada card users di halaman Network
+- Untuk membuat jaringan, dibutuhkan konfirmasi terlebih dahulu dari user yang diminta untuk terhubung
+- User dapat menolak jaringan, dan user dapat memutus jaringan
+
+
+-----GROUP-----
+- User dapat membuat grup bisnis, untuk membuat grup user harus mengisi beberapa data terlebih dahulu yaitu :
+	1. Nama Grup (Wajib)
+	2. Deskripsi
+	3. Member / Co-Founder
+- User dapat melihat grup yang telah dibuatnya dan yang diikutinya
+
+
+-----USER GROUP-----
+- User dapat melakukan chatting didalam grup
+- User dapat melakukan Perencanaan Umum, datanya yaitu :
+	1. Rencana
+	2. Tanggal Mulai
+	3. Tanggal Berakhir
+	4. Keterangan
+- User dapat melakukan Perencanaan untuk user tertentu atau dirinya sendiri, dengan data :
+	1. Rencana
+	2. Tanggal Mulai
+	3. Tanggal Berakhir
+	4. Keterangan
+- User dapat melakukan presentasi (Cloud Presentation) mengenai bisnisnya (BELUM PASTI)
+
+
+-----Diskusi-----
+- User dapat menanyakan masalah bisnisnya
+- User akan mendapat jawaban dari Ahli Bisnis

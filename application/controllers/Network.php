@@ -9,6 +9,8 @@ class Network extends CI_Controller {
 		$this->load->model('Users', 'User');
 		$this->load->model('Networks', 'Network');
 		$this->load->model('NetworkRequests', 'NetworkRequest');
+
+		checkMethod();
 	}
 
 	public function index()
@@ -23,11 +25,20 @@ class Network extends CI_Controller {
 	{
 		if(!isPost()) return show_404();
 
-		if($this->NetworkRequest->isRequested($this->input->post('username'))) return redirect('/network');
+		if($this->NetworkRequest->hasRequested($this->input->post('username'))) return redirect('/network');
 
 		if($this->NetworkRequest->create()) return redirect('/network');
 		
 		echo "Gagal menghubungkan";
+	}
+
+	public function disconnect()
+	{
+		if(!isDelete()) return show_404();
+
+		if($this->Network->disconnect($this->input->post('username'))) return redirect('/network_request');
+
+		echo "Gagal memutuskan";
 	}
 
 }

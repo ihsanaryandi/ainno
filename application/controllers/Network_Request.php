@@ -47,13 +47,4 @@ class Network_Request extends CI_Controller {
 
 		echo "Gagal menolak";
 	}
-
-	public function disconnect()
-	{
-		if(!isDelete()) return show_404();
-
-		if($this->Network->disconnect($this->input->post('username'))) return redirect('/network_request');
-
-		echo "Gagal memutuskan";
-	}
 }

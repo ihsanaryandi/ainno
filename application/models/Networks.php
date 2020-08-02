@@ -20,41 +20,38 @@ class Networks extends CI_Model {
 
 	public function getConnectedNetworks()
 	{
-		$networks = $this->db->select('users.user_id, users.username, users.profile_picture')
-							 ->from('users')
-							 ->join('networks', 'username = founder_username')
-							 ->where('co_founder_username', user('username'))
-							 ->get()
-							 ->result_array();
+		$user = user('username');
 
-		return $networks;
+		return $this->db->query("SELECT `username`, `name`, `profile_picture` 
+								 FROM `users`
+								 INNER JOIN `networks`
+								 ON `networks`.`founder_username` = `users`.`username`
+								 WHERE `founder_username` != '$user'
+								 AND `co_founder_username` = '$user'
+								 AND `is_connected` = 1
+								 UNION
+								 SELECT `username`, `name`, `profile_picture`
+								 FROM `users`
+								 INNER JOIN `networks`
+								 ON `networks`.`co_founder_username` = `users`.`username`
+								 WHERE `co_founder_username` != '$user'
+								 AND `founder_username` = '$user'
+								 AND `is_connected` = 1
+								")->result_array();
 	}
 
 	public function disconnect($username)
 	{
+		$user = user('username');
 
-		$whereRequest = [
-			'username_request' => $username,
-			'co_founder_username' => user('username')
-		];
-
-		$whereNetworks = [
-			[
-				'founder_username' => $username,
-				'co_founder_username' => user('username')
-			],
-			[
-				'founder_username' => user('username'),
-				'co_founder_username' => $username
-			],
-		];
-
-		$this->db->delete('network_requests', $whereRequest);
-	
-		foreach ($whereNetworks as $where) 
-		{
-			$this->db->delete('networks', $where);
-		}
+		$this->db->query("DELETE FROM `networks`
+						  WHERE 
+						  (`founder_username` = '$user'
+							  AND `co_founder_username` = '$username')
+							  OR (`co_founder_username` = '$user'
+							  AND `founder_username` = '$username'
+						  )
+						");
 
 		return $this->db->affected_rows();
 
@@ -64,14 +61,8 @@ class Networks extends CI_Model {
 	{
 		$result = $this->db->get_where('networks', [
 			'founder_username' => user('username'),
-			'co_founder_username' => $username
-		])->num_rows();
-
-		if($result) return $result;
-
-		$result = $this->db->get_where('networks', [
-			'founder_username' => $username,
-			'co_founder_username' => user('username')
+			'co_founder_username' => $username,
+			'is_connected' => 1
 		])->num_rows();
 
 		return $result;

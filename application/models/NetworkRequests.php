@@ -12,10 +12,13 @@ class NetworkRequests extends CI_Model {
 
 	public function getNetworkRequests()
 	{
-		return $this->db->select('users.user_id, users.username, users.profile_picture')
+		return $this->db->select('username, profile_picture')
 						->from('users')
-						->join('network_requests', 'username = username_request')
-						->where('co_founder_username', user('username'))
+						->join('networks', 'founder_username = username')
+						->where([
+							'co_founder_username' => user('username'),
+							'is_connected' => 0
+						])
 						->get()
 						->result_array();
 	}
@@ -23,49 +26,42 @@ class NetworkRequests extends CI_Model {
 	public function create()
 	{
 		$data = [
-			'username_request' => user('username'),
-			'co_founder_username' => $this->input->post('username')
+			'founder_username' => user('username'),
+			'co_founder_username' => $this->input->post('username'),
+			'is_connected' => 0
 		];
 
-		$this->db->insert('network_requests', $data);
+		$this->db->insert('networks', $data);
 
 		return $this->db->affected_rows();
 	}
 
 	public function createNetworks($username)
 	{
-		$this->deleteRequest($username);
-
-		if($this->Network->isConnected($username)) return true;
-
-		$data = [
-			[
-				'founder_username' => $username,
-				'co_founder_username' => user('username')
-			],
-			[
-				'founder_username' => user('username'),
-				'co_founder_username' => $username
-			],
-		];
-
-		$this->db->insert_batch('networks', $data);
+		$this->db->update('networks', ['is_connected' => 1], [
+			'founder_username' => $username,
+			'co_founder_username' => user('username')
+		]);
 
 		return $this->db->affected_rows();
 	}
 
 	public function deleteRequest($username)
 	{
-		$this->db->delete('network_requests', ['username_request' => $username]);
+		$this->db->delete('networks', [
+			'founder_username' => $username,
+			'co_founder_username' => user('username')
+		]);
 
 		return $this->db->affected_rows();
 	}
 
-	public function isRequested($username)
+	public function hasRequested($username)
 	{
-		$result = $this->db->get_where('network_requests', [
-			'username_request' => user('username'),
-			'co_founder_username' => $username
+		$result = $this->db->get_where('networks', [
+			'founder_username' => user('username'),
+			'co_founder_username' => $username,
+			'is_connected' => 0
 		])->num_rows();
 
 		return $result;
