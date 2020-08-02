@@ -7,6 +7,7 @@
 						<h5 class="mb-3 text-center">Profil</h5>
 						
 						<?= csrf(); ?>
+						<?= method('PUT'); ?>
 						<div class="form-group">
 							<label for="profilePicture">Foto Profil</label>
 							<div class="custom-file">

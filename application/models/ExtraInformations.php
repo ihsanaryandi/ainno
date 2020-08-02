@@ -28,7 +28,7 @@ class ExtraInformations extends CI_Model {
 			return;
 		}
 
-		$this->db->update('users', $data, ['username' => $this->session->userdata('username')]);
+		$this->db->update('users', $data, ['user_id' => $this->session->userdata('user_id')]);
 
 		return $this->db->affected_rows();
 	}
@@ -69,7 +69,7 @@ class ExtraInformations extends CI_Model {
 
 		foreach ($skillsSplit as $skill) {
 			$insert[] = [
-				'username' => $this->session->userdata('username'),
+				'user_id' => $this->session->userdata('user_id'),
 				'skill_name' => $skill
 			];
 		}
@@ -80,14 +80,14 @@ class ExtraInformations extends CI_Model {
 	}
 
 	private function _deleteCurrentSkills($table) {
-		$skillsCount = $this->db->get_where($table, ['username' => $this->session->userdata('username')])
+		$skillsCount = $this->db->get_where($table, ['user_id' => $this->session->userdata('user_id')])
 						        ->num_rows();
 
 		if($skillsCount)
 		{
 			for ($i=0; $i < $skillsCount; $i++) 
 			{ 
-				$this->db->delete($table, ['username' => $this->session->userdata('username')]);
+				$this->db->delete($table, ['user_id' => $this->session->userdata('user_id')]);
 			}
 		}
 

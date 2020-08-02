@@ -7,28 +7,28 @@ function user($index = null) {
 
 	$ci = get_instance();
 
-	if(isset($currentUser[$ci->session->userdata('username')])) 
+	if(isset($currentUser[$ci->session->userdata('user_id')])) 
 	{
 		if($index) 
 		{	
-			return $currentUser[$ci->session->userdata('username')][$index];
+			return $currentUser[$ci->session->userdata('user_id')][$index];
 		}
 				
-		return $currentUser[$ci->session->userdata('username')];
+		return $currentUser[$ci->session->userdata('user_id')];
 	}
 
-	$user = $ci->db->get_where('users', ['username' => $ci->session->userdata('username')])->row_array();
+	$user = $ci->db->get_where('users', ['user_id' => $ci->session->userdata('user_id')])->row_array();
 
 	if($user) 
 	{
-		$currentUser[$ci->session->userdata('username')] = $user;
+		$currentUser[$ci->session->userdata('user_id')] = $user;
 
 		if($index) 
 		{	
-			return $currentUser[$ci->session->userdata('username')][$index];
+			return $currentUser[$ci->session->userdata('user_id')][$index];
 		}
 
-		return $currentUser[$ci->session->userdata('username')];
+		return $currentUser[$ci->session->userdata('user_id')];
 	}
 
 	return null;

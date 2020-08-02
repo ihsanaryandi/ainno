@@ -18,7 +18,7 @@
 							<p><strong class="city"><?= $user['city']; ?></strong></p>
 							<p class="bio"><?= $user['bio']; ?></p>
 
-							<?php if($user['username'] === $this->session->userdata('username')) : ?>
+							<?php if($user['user_id'] === user('user_id')) : ?>
 								<a href="/profile/edit" class="btn btn-secondary w-50 m-auto">Edit Profil</a>
 							<?php endif; ?>
 						</div>
@@ -28,7 +28,7 @@
 					<div class="card">
 						<div class="card-header d-flex align-items-center justify-content-between">
 							<h5 class="m-0">Keahlian</h5>
-							<?php if($user['username'] === $this->session->userdata('username')) : ?>
+							<?php if($user['user_id'] === user('user_id')) : ?>
 								<a href="#changeSkills" data-toggle="modal" data-modal="#changeSkills">Edit</a>
 							<?php endif; ?>
 						</div>
@@ -43,7 +43,8 @@
 					<div class="card">
 						<div class="card-header d-flex align-items-center justify-content-between">
 							<h5 class="m-0">Mencari Co-Founder dengan keahlian</h5>
-							<?php if($user['username'] === $this->session->userdata('username')) : ?>
+
+							<?php if($user['user_id'] === user('user_id')) : ?>
 								<a href="#changeSkills" data-toggle="modal" data-modal="#changeSkills">Edit</a>
 							<?php endif; ?>
 						</div>

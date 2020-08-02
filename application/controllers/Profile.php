@@ -13,11 +13,11 @@ class Profile extends CI_Controller {
 	}
 
 	public function index() {
-		$data['user'] = $this->_checkUsername();
-		
-		$data['userSkills'] = $this->UserSkills->getSkills($this->input->get('username'));
-		$data['wantedSkills'] = $this->WantedSkills->getSkills($this->input->get('username'));
-		
+		$user = $this->_checkUsername();
+
+		$data['userSkills'] = $this->UserSkills->getSkills($user['user_id']);
+		$data['wantedSkills'] = $this->WantedSkills->getSkills($user['user_id']);
+		$data['user'] = $user;
 		$data['title'] = "Profile {$this->input->get('username')}";
 
 		view('profile', $data);
@@ -30,14 +30,14 @@ class Profile extends CI_Controller {
 
 			if(!isPut()) return view('edit-profile', $data);
 			
-			$this->User->updateUser(user('username'));
+			$this->User->updateUser(user('user_id'));
 		});
 	}
 
 	private function _checkUsername() {
 		if($this->input->get('username')) 
 		{
-			return $this->User->getUser($this->input->get('username'));
+			return $this->User->getUserByUsername($this->input->get('username'));
 		}
 
 		return redirect('/');

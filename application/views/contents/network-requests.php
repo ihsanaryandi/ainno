@@ -17,14 +17,14 @@
 									<form class="d-inline" action="/network_request/accept" method="POST">
 										<?= csrf(); ?>
 										<?= method('PUT'); ?>
-										<input type="hidden" name="username" value="<?= $request['username']; ?>">
+										<input type="hidden" name="user-id" value="<?= $request['user_id']; ?>">
 										<button class="btn btn-primary">Terima</button>
 									</form>
 									
 									<form class="d-inline" action="/network_request/decline" method="POST">
 										<?= csrf(); ?>
 										<?= method('DELETE'); ?>
-										<input type="hidden" name="username" value="<?= $request['username']; ?>">
+										<input type="hidden" name="user-id" value="<?= $request['user_id']; ?>">
 										<button class="btn btn-outline-primary">Tolak</button>
 									</form>
 								</div>
@@ -54,7 +54,7 @@
 									<form class="d-inline" action="/network/disconnect" method="POST">
 										<?= csrf(); ?>
 										<?= method('DELETE'); ?>
-										<input type="hidden" name="username" value="<?= $network['username']; ?>">
+										<input type="hidden" name="user-id" value="<?= $network['user_id']; ?>">
 										<button class="btn btn-primary">Putuskan</button>
 									</form>
 								</div>

@@ -21,7 +21,7 @@ class Auth extends CI_Controller {
 
 			if($user = $this->Auth->sign_in())
 			{
-				$this->session->set_userdata('username', $user['username']);
+				$this->session->set_userdata('user_id', (int) $user['user_id']);
 
 				return redirect('/network');
 			}
@@ -53,7 +53,7 @@ class Auth extends CI_Controller {
 	public function sign_out() 
 	{
 		isAuthenticated(function() {
-			$this->session->unset_userdata('username');
+			$this->session->unset_userdata('user_id');
 			return redirect('/');
 		});
 	}

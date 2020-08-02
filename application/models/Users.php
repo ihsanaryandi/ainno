@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Users extends CI_Model {
 
-	public function getUser($username) {
+	public function getUserByUsername($username) {
 		return $this->db->get_where('users', ['username' => $username])->row_array();
 	}
 
@@ -18,7 +18,7 @@ class Users extends CI_Model {
 				 		->result_array();
 	}
 
-	public function updateUser($username) {
+	public function updateUser($userId) {
 		$inputs = filterInputs($this->input->post());
 
 		$data = [
@@ -38,7 +38,7 @@ class Users extends CI_Model {
 			}
 		}
 
-		$this->db->update('users', $data, ['username' => $username]);
+		$this->db->update('users', $data, ['user_id' => $userId]);
 		
 		redirect('/profile?username=' . user('username'));
 	}

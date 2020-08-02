@@ -25,7 +25,7 @@ class Network extends CI_Controller {
 	{
 		if(!isPost()) return show_404();
 
-		if($this->NetworkRequest->hasRequested($this->input->post('username'))) return redirect('/network');
+		if($this->NetworkRequest->hasRequested($this->input->post('user-id'))) return redirect('/network');
 
 		if($this->NetworkRequest->create()) return redirect('/network');
 		
@@ -36,7 +36,7 @@ class Network extends CI_Controller {
 	{
 		if(!isDelete()) return show_404();
 
-		if($this->Network->disconnect($this->input->post('username'))) return redirect('/network_request');
+		if($this->Network->disconnect($this->input->post('user-id'))) return redirect('/network_request');
 
 		echo "Gagal memutuskan";
 	}

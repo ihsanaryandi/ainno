@@ -61,7 +61,7 @@
            <div class="mt-5" id="coFounderResults">
               <?php foreach($users as $user) : ?>
                 
-                <?php if($user['username'] !== user('username')) : ?>
+                <?php if($user['user_id'] !== user('user_id')) : ?>
                   <div class="card mb-3" style="max-width: 540px;">
                     <div class="row no-gutters">
                       <div class="col-md-4">
@@ -86,7 +86,7 @@
 
                           <?php if(user()) : ?>
 
-                            <?php if((int) $this->Network->isConnected($user['username'])) : ?>
+                            <?php if((int) $this->Network->isConnected($user['user_id'])) : ?>
                               
                               <button class="btn btn-primary disabled">Terhubung</button>
                             
@@ -95,7 +95,7 @@
                               <form class="d-inline" action="/network/connect" method="POST">  
                                 <?= csrf(); ?>
 
-                                <input type="hidden" name="username" value="<?= $user['username']; ?>">
+                                <input type="hidden" name="user-id" value="<?= $user['user_id']; ?>">
                                 <button class="btn btn-primary" type="submit">Hubungkan</button>
                               </form>
 

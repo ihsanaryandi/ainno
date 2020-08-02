@@ -3,11 +3,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class GroupMembers extends CI_Model {
 
-	public function getMember($groupId, $username) 
+	public function getMember($groupId, $userId) 
 	{
 		return $this->db->get_where('group_members', [
-			'group_id' => (int) $groupId,
-			'member_username' => $username
+			'group_id' => $groupId,
+			'user_id' => $userId
 		])->row_array();
 	}
 
@@ -17,8 +17,8 @@ class GroupMembers extends CI_Model {
 						->from('business_groups')
 						->join('group_members', 'business_groups.group_id = group_members.group_id')
 						->where([
-							'group_members.member_username' => user('username'),
-							'creator !=' => user('username')
+							'group_members.user_id' => user('user_id'),
+							'creator !=' => user('user_id')
 						])
 						->get()
 						->result_array();

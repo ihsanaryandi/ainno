@@ -28,7 +28,7 @@ class Group extends CI_Controller {
 	private function _index() 
 	{
 		$data['title'] = 'Grup';
-		$data['myGroups'] = $this->Group->getWhereGroups(['creator' => user('username')]);
+		$data['myGroups'] = $this->Group->getWhereGroups(['creator' => user('user_id')]);
 		$data['otherGroups'] = $this->GroupMember->getGroups();
 
 		view('group-index', $data);
@@ -46,7 +46,7 @@ class Group extends CI_Controller {
 	{
 		$group = $this->Group->getGroup($groupId);
 
-		if(!$group || !$this->GroupMember->getMember($groupId, user('username'))) return redirect('/group');
+		if(!$group || !$this->GroupMember->getMember($groupId, user('user_id'))) return redirect('/group');
 
 		return $group;
 	}

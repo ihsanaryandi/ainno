@@ -10,46 +10,38 @@ class Networks extends CI_Model {
 		$this->load->model('Users', 'User');
 	}
 
-	public function getNetwork($username)
-	{
-		return $this->db->get_where('networks', [
-			'co_founder_username' => $username,
-			'founder_username' => user('username')
-		])->row_array();
-	}
-
 	public function getConnectedNetworks()
 	{
-		$user = user('username');
+		$user = user('user_id');
 
-		return $this->db->query("SELECT `username`, `name`, `profile_picture` 
+		return $this->db->query("SELECT `user_id`, `username`, `name`, `profile_picture` 
 								 FROM `users`
 								 INNER JOIN `networks`
-								 ON `networks`.`founder_username` = `users`.`username`
-								 WHERE `founder_username` != '$user'
-								 AND `co_founder_username` = '$user'
+								 ON `networks`.`user1` = `users`.`user_id`
+								 WHERE `user1` != '$user'
+								 AND `user2` = '$user'
 								 AND `is_connected` = 1
 								 UNION
-								 SELECT `username`, `name`, `profile_picture`
+								 SELECT `user_id`, `username`, `name`, `profile_picture`
 								 FROM `users`
 								 INNER JOIN `networks`
-								 ON `networks`.`co_founder_username` = `users`.`username`
-								 WHERE `co_founder_username` != '$user'
-								 AND `founder_username` = '$user'
+								 ON `networks`.`user2` = `users`.`user_id`
+								 WHERE `user2` != '$user'
+								 AND `user1` = '$user'
 								 AND `is_connected` = 1
 								")->result_array();
 	}
 
-	public function disconnect($username)
+	public function disconnect($userId)
 	{
-		$user = user('username');
+		$user = user('user_id');
 
 		$this->db->query("DELETE FROM `networks`
 						  WHERE 
-						  (`founder_username` = '$user'
-							  AND `co_founder_username` = '$username')
-							  OR (`co_founder_username` = '$user'
-							  AND `founder_username` = '$username'
+						  (`user1` = '$user'
+							  AND `user2` = '$userId')
+							  OR (`user2` = '$user'
+							  AND `user1` = '$userId'
 						  )
 						");
 
@@ -57,11 +49,11 @@ class Networks extends CI_Model {
 
 	}
 
-	public function isConnected($username)
+	public function isConnected($userId)
 	{
 		$result = $this->db->get_where('networks', [
-			'founder_username' => user('username'),
-			'co_founder_username' => $username,
+			'user1' => user('user_id'),
+			'user2' => $userId,
 			'is_connected' => 1
 		])->num_rows();
 

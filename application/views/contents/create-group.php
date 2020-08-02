@@ -37,7 +37,7 @@
 								<?php foreach($users as $user) : ?>
 									<?php $currentIndex = $i++; ?>
 
-									<?php if($user['username'] !== user('username')) : ?>
+									<?php if($user['user_id'] !== user('user_id')) : ?>
 
 									<label class="list-group-item list-group-item-action list-group-item-light d-flex justify-content-between align-items-center m-0" for="user<?= $user['user_id']; ?>" style="cursor: pointer;">
 										
@@ -51,7 +51,7 @@
 											<input class="form-check-input m-0" 
 												   type="checkbox" 
 												   name="cofounder[<?= $currentIndex; ?>]" 
-												   value="<?= $user['username']; ?>" 
+												   value="<?= $user['user_id']; ?>" 
 												   id="user<?= $user['user_id']; ?>" 
 												   style="position: static;" 
 												   <?= isSelected($currentIndex); ?>

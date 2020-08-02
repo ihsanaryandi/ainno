@@ -6,9 +6,14 @@ class Extras extends CI_Controller {
 		parent::__construct();
 
 		$this->load->model('ExtraInformations', 'Extras');
+
+		checkMethod();
 	}
 
 	public function profile() {
+
+		if(!isPut()) return show_404();
+
 		isAuthenticated(function() {		
 			$data['title'] = 'Extra Informations';
 			$data['hideNavbar'] = true;

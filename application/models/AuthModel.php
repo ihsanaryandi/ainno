@@ -17,7 +17,7 @@ class AuthModel extends CI_Model {
 		$this->db->insert('users', $data);
 
 		if($this->db->affected_rows()) {
-			$this->session->set_userdata('username', $data['username']);
+			$this->session->set_userdata('user_id', (int) $this->db->insert_id());
 			return true;
 		}
 

@@ -12,11 +12,11 @@ class NetworkRequests extends CI_Model {
 
 	public function getNetworkRequests()
 	{
-		return $this->db->select('username, profile_picture')
+		return $this->db->select('user_id, username, profile_picture')
 						->from('users')
-						->join('networks', 'founder_username = username')
+						->join('networks', 'user1 = user_id')
 						->where([
-							'co_founder_username' => user('username'),
+							'user2' => user('user_id'),
 							'is_connected' => 0
 						])
 						->get()
@@ -26,8 +26,8 @@ class NetworkRequests extends CI_Model {
 	public function create()
 	{
 		$data = [
-			'founder_username' => user('username'),
-			'co_founder_username' => $this->input->post('username'),
+			'user1' => user('user_id'),
+			'user2' => $this->input->post('user-id'),
 			'is_connected' => 0
 		];
 
@@ -36,31 +36,31 @@ class NetworkRequests extends CI_Model {
 		return $this->db->affected_rows();
 	}
 
-	public function createNetworks($username)
+	public function createNetworks($userId)
 	{
 		$this->db->update('networks', ['is_connected' => 1], [
-			'founder_username' => $username,
-			'co_founder_username' => user('username')
+			'user1' => $userId,
+			'user2' => user('user_id')
 		]);
 
 		return $this->db->affected_rows();
 	}
 
-	public function deleteRequest($username)
+	public function deleteRequest($userId)
 	{
 		$this->db->delete('networks', [
-			'founder_username' => $username,
-			'co_founder_username' => user('username')
+			'user1' => $userId,
+			'user2' => user('user_id')
 		]);
 
 		return $this->db->affected_rows();
 	}
 
-	public function hasRequested($username)
+	public function hasRequested($userId)
 	{
 		$result = $this->db->get_where('networks', [
-			'founder_username' => user('username'),
-			'co_founder_username' => $username,
+			'user1' => user('user_id'),
+			'user2' => $userId,
 			'is_connected' => 0
 		])->num_rows();
 

@@ -28,7 +28,7 @@ class Network_Request extends CI_Controller {
 	{
 		if(!isPut()) return show_404();
 
-		if($this->NetworkRequest->createNetworks($this->input->post('username')))
+		if($this->NetworkRequest->createNetworks($this->input->post('user-id')))
 		{
 			return redirect('/network_request');
 		}
@@ -40,7 +40,7 @@ class Network_Request extends CI_Controller {
 	{
 		if(!isDelete()) return show_404();
 
-		if($this->NetworkRequest->deleteRequest($this->input->post('username'))) 
+		if($this->NetworkRequest->deleteRequest($this->input->post('user-id'))) 
 		{
 			return redirect('/network_request');
 		}

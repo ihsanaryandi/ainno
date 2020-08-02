@@ -18,7 +18,7 @@ class Groups extends CI_Model {
 		$data = [
 			'name' => htmlspecialchars($this->input->post('group-name')),
 			'description' => htmlspecialchars($this->input->post('desc')),
-			'creator' => user('username')
+			'creator' => user('user_id')
 		];
 
 		$this->db->insert('business_groups', $data);
@@ -43,7 +43,7 @@ class Groups extends CI_Model {
 		{
 			$this->db->insert('group_members', [
 				'group_id' => $groupId,
-				'member_username' => user('username')
+				'user_id' => user('user_id')
 			]);
 
 			if(!$this->db->affected_rows()) {
@@ -58,14 +58,14 @@ class Groups extends CI_Model {
 
 		$data[] = [
 			'group_id' => $groupId,
-			'member_username' => user('username')
+			'user_id' => user('user_id')
 		];
 
 		foreach ($this->input->post('cofounder') as $coFounder) 
 		{
 			$data[] = [
 				'group_id' => $groupId,
-				'member_username' => $coFounder
+				'user_id' => $coFounder
 			];
 		}
 
